@@ -1,4 +1,4 @@
-# UA Libraries' Building Capacity Counter
+# UA Libraries Building Capacity Counter
 
 To aid the libraries in social distancing measures due to the Covid-19 pandemic, WTD was asked to create a simple counter app. This app has three parts:
 
