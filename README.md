@@ -6,6 +6,14 @@ To aid the libraries in social distancing measures due to the Covid-19 pandemic,
 2. a "back-end" component with buttons that update a running count
 3. a "front-end" component that lists the current counts/occupancy percentages for each location
 
+![TotalCount component on lib.ua.edu homepage](https://github.com/ualibweb/covid-counter/blob/main/img/homepage-count.png)
+
+> *TotalCount component on lib.ua.edu homepage*
+
+![BackEnd component on a private WP page](https://github.com/ualibweb/covid-counter/blob/main/img/gorgas-counter.png)
+
+> *BackEnd component on a private WP page*
+
 
 
 ## WordPress
