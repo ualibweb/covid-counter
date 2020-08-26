@@ -2,7 +2,7 @@
 
 To aid the libraries in social distancing measures due to the Covid-19 pandemic, WTD was asked to create a simple counter app. This app has three parts:
 
-1. a WordPress plugin (not represented in this repo, see Jared's repo) that creates a database and sets up and handles API endpoints
+1. a WordPress plugin (not represented in this repo, see Jared's [covid counter plugin](https://github.com/ualibweb/covid-counter-plugin)) that creates a database and sets up and handles API endpoints
 2. a "back-end" app with buttons that update a running count
 3. a "front-end" app that lists the current counts/occupancy percentages for each location
 
@@ -20,7 +20,8 @@ We also added a custom user role, 'Covid Counter,' to lock down our counter page
 
 #### Activating the plugin
 
-1. add `covid-counter` plugin directory to `/wp-content/plugins/` directory
+1. clone [covid-counter-plugin](https://github.com/ualibweb/covid-counter-plugin.git) to your machine
+1. add `covid-counter-plugin` directory to `/wp-content/plugins/` directory
 2. activate plugin via WP dashboard
 3. check your API endpoint! `http://yourwordpress.com/wp-json/covid-counter/counts` should return an empty array because you haven't logged any counts yet, but shouldn't return a 404. If you get `401 - unauthorized`, make sure you're logged in to WP and either an admin user or 'Covid Counter' custom role.
 4. if you're logged in and an admin user, check your database for the table `wp_covid_counter_movements`. When testing this plugin, the table would occasionally not be added to the database, but we couldn't figure out why. You're on your own! :woman_shrugging:
@@ -87,7 +88,7 @@ While this app is all technically front-end, I've broken it up into "front-end" 
 Clone to your machine.. .
 
 ```bash
-git clone 
+git clone https://github.com/ualibweb/covid-counter.git 
 ```
 
 Install the dependencies...
@@ -109,7 +110,7 @@ Navigate to [localhost:5000](http://localhost:5000). You should see your app run
 
 All the API fetching is in `/src/api.js`. These are URLs specific to our plugin endpoints.
 
-While the "back-end" component sets the capacity via props passed to it from the custom component HTML, the "front-end" component has an object in `/src/FrontEnd/TotalCount.svelte` called `locationCapactiy` that lists those numbers.
+While the "back-end" component sets the capacity via props passed to it from the custom component HTML, the "front-end" component has an object in `/src/FrontEnd/TotalCount.svelte` called `locationCapacity` that lists those numbers.
 
 The "front-end" component uses long polling to get the latest count from our API every 2 minutes. The "back-end" component has the ability to do so as well, but we turned it off for the sake of our server load. Both components have a prop/variable called `polling` that you can set to true/false, and another called `pollTime` where you can set the timing of the long poll.
 
@@ -123,7 +124,7 @@ Once you're ready to add the script to your theme, it's time to run the build sc
 npm run build
 ```
 
-The resulting `bundle.js` file created during this build process is what we include in our theme. You can add it wherever you enqueue your other scripts! Since it's vanilla JS, it doesn't require jQuery.
+The resulting `/public/build/bundle.js` file created during this build process is what we include in our theme. You can add it wherever you enqueue your other scripts! Since it's vanilla JS, it doesn't require jQuery.
 
 #### Add the components to your WP page
 
