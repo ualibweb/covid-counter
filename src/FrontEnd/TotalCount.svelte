@@ -24,7 +24,6 @@
   const locationCapacity = {
     bruno: 264,
     gorgas: 500,
-    hoole: 5,
     mclure: 79,
     rodgers: 132
   }

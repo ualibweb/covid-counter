@@ -14,10 +14,17 @@
 </head>
 
 <body>
-  <!-- <h6>This is the Backend App</h6> -->
-  <!-- <covid-counter-app backend="true" location="gorgas" capacity="200" credentials="some token?"></covid-counter-app> -->
+  <h2>This index.html is for testing purposes, served at localhost:5000. This will not show up in production, only the components showcased below.</h2>
+  <h4>"Back end" app</h4>
+  <p>This is the component that ends up on the individual "counter" pages. In this example, I've added the location prop to the html element and passed in "gorgas". The backend prop is set to true, and the capacity prop is where you set the total allowable occupancy for the location.</p>
+  <code>&lt;covid-counter-app backend=&quot;true&quot; location=&quot;gorgas&quot; capacity=&quot;200&quot;&gt;&lt;/covid-counter-app&gt;</code>
+  <covid-counter-app backend="true" location="gorgas" capacity="200" credentials="some token?"></covid-counter-app>
 
-  <!-- <h6>This is the Frontend App</h6> -->
+  <br /><br /><hr><br />
+  <h4>"Front-end" app</h4>
+  <p>This component is for public comsumption, so it's much simpler, no props to set up.</p>
+  <code>&lt;covid-counter-app&gt;&lt;/covid-counter-app&gt;</code>
+  <br /><br />
   <covid-counter-app></covid-counter-app>
 </body>
 
