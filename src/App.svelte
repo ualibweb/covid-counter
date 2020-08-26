@@ -24,6 +24,5 @@
 {#if backend }
   <covid-counter-backend {location} {capacity} {credentials} {log} />
 {:else}
-  <!--<FrontEnd {location} {log}></FrontEnd>-->
   <covid-counter-total {log} />
 {/if}

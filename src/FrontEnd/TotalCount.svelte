@@ -10,7 +10,7 @@
     // If we should log to console
     log = true
 
-  // Set the pollTime to 30 seconds
+  // Set the pollTime to 120 seconds
   let pollTime = 120000
 
   // This will hold our poll timeout

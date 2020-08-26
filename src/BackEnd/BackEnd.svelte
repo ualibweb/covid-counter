@@ -24,7 +24,7 @@
   // We'll update this variable anytime there is an error
   let error = false
 
-  // Set the pollTime to 30 seconds
+  // Set the pollTime to 120 seconds
   let pollTime = 120000
 
   // This will hold our poll timeout
