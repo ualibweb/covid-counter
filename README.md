@@ -82,7 +82,7 @@ The front-end of this app is built in [svelte](https://svelte.dev/)! If you've e
 
 While this app is all technically front-end, I've broken it up into "front-end" and "back-end" components. Front and back in this case refers to wordpress or even users. The "front-end" component is on a public page for anyone to view the total count in each location, and the "back-end" component is on a private wordpress page where staff can click a button to update the count.
 
-#### Setting it up
+#### Set up for development
 
 Clone to your machine.. .
 
@@ -105,12 +105,40 @@ npm run dev
 
 Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
-## Build the production script
+#### Code that is unique to UA Libraries
 
-To create an optimised, vanilla JS version of the app:
+All the API fetching is in `/src/api.js`. These are URLs specific to our plugin endpoints.
+
+While the "back-end" component sets the capacity via props passed to it from the custom component HTML, the "front-end" component has an object in `/src/FrontEnd/TotalCount.svelte` called `locationCapactiy` that lists those numbers.
+
+The "front-end" component uses long polling to get the latest count from our API every 2 minutes. The "back-end" component has the ability to do so as well, but we turned it off for the sake of our server load. Both components have a prop/variable called `polling` that you can set to true/false, and another called `pollTime` where you can set the timing of the long poll.
+
+Both components use conditional styling to update the color of the count based on current occupancy. Anything lower than 90% capacity will be green, and once it hits 90%, the number turns red. This logic is within the HTML portion of both `/src/FrontEnd/TotalCount.svelte` and `/src/BackEnd/BackEnd.svelte`.
+
+#### Build the production script
+
+Once you're ready to add the script to your theme, it's time to run the build script. To create an optimised, vanilla JS version of the app:
 
 ```bash
 npm run build
 ```
 
-The resulting `bundle.js` file created during this build process is what we include in our theme.
+The resulting `bundle.js` file created during this build process is what we include in our theme. You can add it wherever you enqueue your other scripts! Since it's vanilla JS, it doesn't require jQuery.
+
+#### Add the components to your WP page
+
+This is the fun part! On the page where you want to add the component, create a Gutenberg HTML block, and insert the component element.
+
+**FrontEnd component**
+
+```html
+<covid-counter-app></covid-counter-app>
+```
+
+**BackEnd component**
+
+```html
+<covid-counter-app backend="true" location="gorgas" capacity="200"></covid-counter-app>
+```
+
+You can also include these components in your WP theme, if you'd rather.
