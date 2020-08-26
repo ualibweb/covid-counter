@@ -6,32 +6,32 @@ To aid the libraries in social distancing measures due to the Covid-19 pandemic,
 2. a "back-end" app with buttons that update a running count
 3. a "front-end" app that lists the current counts/occupancy percentages for each location
 
-## Get started
+
+
+## WordPress
 
 Because there's a WordPress component to this, how you get your plugin up and running is up to you. However, I'll share what I did so you can have an idea of what to do!
 
-### WordPress
-
-#### Plugin customization
+### Plugin customization
 
 This plugin is tailored specifically for the libraries at UA. The API endpoints for the counts are our individual library locations. You can change these to meet your needs! The `constants.php` file has an array of locations. Edit those to fit your situation.
 
 We also added a custom user role, 'Covid Counter,' to lock down our counter pages to specific users. Admin users automatically have the Covid Counter permissions, but other users will need to have their role changed. If this doesn't fit your needs, feel free to remove it.
 
-#### Activating the plugin
+### Activating the plugin
 
 1. clone [covid-counter-plugin](https://github.com/ualibweb/covid-counter-plugin.git) to your machine
 1. add `covid-counter-plugin` directory to `/wp-content/plugins/` directory
 2. activate plugin via WP dashboard
 3. check your API endpoint! `http://yourwordpress.com/wp-json/covid-counter/counts` should return an empty array because you haven't logged any counts yet, but shouldn't return a 404. If you get `401 - unauthorized`, make sure you're logged in to WP and either an admin user or 'Covid Counter' custom role.
 4. if you're logged in and an admin user, check your database for the table `wp_covid_counter_movements`. When testing this plugin, the table would occasionally not be added to the database, but we couldn't figure out why. You're on your own! :woman_shrugging:
-5. If you want, you can test your endpoints using Postman. I did! See endpoint details in the next section.
+5. If you want, you can test your endpoints using [Postman](https://www.postman.com/postman/). I did! See endpoint details in the next section.
 
-#### REST API endpoints
+### REST API endpoints
 
 Because we have "front end" and "back end" apps, we needed a variety of endpoints to meet our needs. 
 
-##### GET /counts
+#### GET /counts
 
 This returns an array of objects with the current count for all locations, e.g.:
 
@@ -56,7 +56,7 @@ This returns an array of objects with the current count for all locations, e.g.:
 ]
 ```
 
-##### GET /counts/[location]
+#### GET /counts/[location]
 
 This returns an object with the count for a specific location, e.g.:
 
@@ -66,7 +66,7 @@ This returns an object with the count for a specific location, e.g.:
 }
 ```
 
-##### POST /movements
+#### POST /movements
 
 This updates the count. It accepts a JSON object, e.g.
 
@@ -77,13 +77,13 @@ This updates the count. It accepts a JSON object, e.g.
 }
 ```
 
-### Counter App
+## Counter App
 
 The front-end of this app is built in [svelte](https://svelte.dev/)! If you've ever used angular, react, or vue, svelte has a similar feel. Its big advantage is that it compiles down to vanilla JS, so there's no need to include a giant library when adding a component to your WP page. All you need is the bundled/minified JS file!
 
 While this app is all technically front-end, I've broken it up into "front-end" and "back-end" components. Front and back in this case refers to wordpress or even users. The "front-end" component is on a public page for anyone to view the total count in each location, and the "back-end" component is on a private wordpress page where staff can click a button to update the count.
 
-#### Set up for development
+### Set up for development
 
 Clone to your machine.. .
 
@@ -106,7 +106,7 @@ npm run dev
 
 Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
-#### Code that is unique to UA Libraries
+### Code that is unique to UA Libraries
 
 All the API fetching is in `/src/api.js`. These are URLs specific to our plugin endpoints.
 
@@ -116,7 +116,7 @@ The "front-end" component uses long polling to get the latest count from our API
 
 Both components use conditional styling to update the color of the count based on current occupancy. Anything lower than 90% capacity will be green, and once it hits 90%, the number turns red. This logic is within the HTML portion of both `/src/FrontEnd/TotalCount.svelte` and `/src/BackEnd/BackEnd.svelte`.
 
-#### Build the production script
+### Build the production script
 
 Once you're ready to add the script to your theme, it's time to run the build script. To create an optimised, vanilla JS version of the app:
 
@@ -126,7 +126,7 @@ npm run build
 
 The resulting `/public/build/bundle.js` file created during this build process is what we include in our theme. You can add it wherever you enqueue your other scripts! Since it's vanilla JS, it doesn't require jQuery.
 
-#### Add the components to your WP page
+### Add the components to your WP page
 
 This is the fun part! On the page where you want to add the component, create a Gutenberg HTML block, and insert the component element.
 
