@@ -3,8 +3,8 @@
 To aid the libraries in social distancing measures due to the Covid-19 pandemic, WTD was asked to create a simple counter app. This app has three parts:
 
 1. a WordPress plugin (not represented in this repo, see Jared's [covid counter plugin](https://github.com/ualibweb/covid-counter-plugin)) that creates a database and sets up and handles API endpoints
-2. a "back-end" app with buttons that update a running count
-3. a "front-end" app that lists the current counts/occupancy percentages for each location
+2. a "back-end" component with buttons that update a running count
+3. a "front-end" component that lists the current counts/occupancy percentages for each location
 
 
 
@@ -20,7 +20,7 @@ We also added a custom user role, 'Covid Counter,' to lock down our counter page
 
 ### Activating the plugin
 
-1. clone [covid-counter-plugin](https://github.com/ualibweb/covid-counter-plugin.git) to your machine
+1. clone [covid-counter-plugin](https://github.com/ualibweb/covid-counter-plugin) to your machine
 1. add `covid-counter-plugin` directory to `/wp-content/plugins/` directory
 2. activate plugin via WP dashboard
 3. check your API endpoint! `http://yourwordpress.com/wp-json/covid-counter/counts` should return an empty array because you haven't logged any counts yet, but shouldn't return a 404. If you get `401 - unauthorized`, make sure you're logged in to WP and either an admin user or 'Covid Counter' custom role.
