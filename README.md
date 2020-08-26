@@ -29,7 +29,7 @@ We also added a custom user role, 'Covid Counter,' to lock down our counter page
 
 ### REST API endpoints
 
-Because we have "front end" and "back end" apps, we needed a variety of endpoints to meet our needs. 
+Because we have "front end" and "back end" components, we needed a variety of endpoints to meet our needs. 
 
 #### GET /counts
 
@@ -104,7 +104,9 @@ npm install
 npm run dev
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+Navigate to [localhost:5000](http://localhost:5000). You should see the `/public/index.html` output, which showcases the two components and has some additional details. If you haven't changed the URLs in the API file, you should at least be seeing the counts from the libraries dev database. If you click the buttons, the count won't actually update because you're not logged in to our wordpress site! 
+
+Edit a component file in `src`, save it, and reload the page to see your changes.
 
 ### Code that is unique to UA Libraries
 
