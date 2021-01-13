@@ -23,7 +23,7 @@
 
   const locationCapacity = {
     bruno: 264,
-    gorgas: 500,
+    gorgas: 400,
     mclure: 79,
     rodgers: 132
   }
@@ -109,7 +109,7 @@
     color:red;
   }
   .count-container {
-    font-size:24px;
+    font-size:19px;
     display: grid;
     grid-template-rows: repeat(5, 1fr);
     align-items: center;
